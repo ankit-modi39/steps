@@ -13,7 +13,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-//
+import androidx.compose.foundation.clickable
+import androidx.compose.ui.graphics.vector.ImageVector
 //import androidx.compose.foundation.layout.*
 //import androidx.compose.material3.*
 //import androidx.compose.runtime.Composable
@@ -55,16 +56,41 @@ fun MyTopBar() {
 @Composable
 fun MyBottomBar() {
     BottomAppBar(
-        containerColor = MaterialTheme.colorScheme.primary
+        containerColor = MaterialTheme.colorScheme.primary,
+        modifier = Modifier.height(70.dp) // Adjust height as needed
     ) {
-        IconButton(onClick = { /* Handle home button click */ }) {
-            Icon(Icons.Filled.Home, contentDescription = "Home")
-        }
-        IconButton(onClick = { /* Handle profile button click */ }) {
-            Icon(Icons.Filled.Person, contentDescription = "Profile")
-        }
+        // Each item will take equal space
+        BottomNavigationItem(
+            icon = Icons.Filled.Home,
+            label = "Home",
+            onClick = { /* Handle home click */ }
+        )
+        BottomNavigationItem(
+            icon = Icons.Filled.Person,
+            label = "Profile",
+            onClick = { /* Handle profile click */ }
+        )
     }
 }
+
+@Composable
+fun RowScope.BottomNavigationItem(icon: ImageVector, label: String, onClick: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .weight(1f)
+            .clickable(onClick = onClick),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Icon(imageVector = icon, contentDescription = label)
+        Text(
+            text = label,
+            fontSize = 12.sp, // Adjust font size as needed
+            color = Color.White // Adapt to your theme color
+        )
+    }
+}
+
 
 
 
