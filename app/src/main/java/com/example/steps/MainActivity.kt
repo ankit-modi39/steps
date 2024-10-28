@@ -1,15 +1,11 @@
+
 package com.example.steps
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.steps.ui.theme.StepsTheme
 
@@ -19,29 +15,22 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             StepsTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                MyApp(1234)
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun MyApp(stepsCount:Int) {
+    HomeScreen(stepsCount=stepsCount)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     StepsTheme {
-        Greeting("Android")
+        MyApp(stepsCount=1234)
     }
 }
+
